@@ -5,18 +5,18 @@
 
 ### Guide
 
-[] Installation
-[] Getting Started
-[] Routing
-[] Web Services
-[] Components
-[] Auto-redrawing System
-[] Integrating with other libraries
-[] Compiling templates
-[] Differences with Other MVC Frameworks
-[] Benchmarks
-[] Good Pratices
-[] Useful Tools
+[ ] Installation
+[ ] Getting Started
+[ ] Routing
+[ ] Web Services
+[ ] Components
+[ ] Auto-redrawing System
+[ ] Integrating with other libraries
+[ ] Compiling templates
+[ ] Differences with Other MVC Frameworks
+[ ] Benchmarks
+[ ] Good Pratices
+[ ] Useful Tools
 
 ### API
 
