@@ -25,6 +25,6 @@
 
 待补充
 
-### Credits
+## Credits
 
 @tuoxiansp 提出并先行了翻译Mithril的工作。
