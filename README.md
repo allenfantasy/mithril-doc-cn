@@ -8,8 +8,8 @@
 ## TODO
 
 ### Guide
-- [ ] Installation @allenfantasy
-- [ ] Getting Started @tuoxiansp
+- [ ] Installation [@allenfantasy](https://github.com/allenfantasy)
+- [ ] Getting Started [@tuoxiansp](https://github.com/tuoxiansp)
 - [ ] Routing
 - [ ] Web Services @tuoxiansp
 - [ ] Components
@@ -23,8 +23,37 @@
 
 ### API
 
-待补充
+- Core
+  - [ ] m
+  - [ ] m.module
+  - [ ] m.prop
+  - [ ] m.withAttr
+- Routing
+  - [ ] m.route(rootElement, defaultRoute, routes)
+  - [ ] m.route(path, params, replaceHistory)
+  - [ ] m.route()
+  - [ ] m.route(element)
+  - [ ] m.route.mode
+  - [ ] m.route.param
+  - [ ] m.route.buildQueryString
+  - [ ] m.route.parseQueryString
+- Data
+  - [ ] m.request
+  - [ ] m.deferred
+  - [ ] m.sync
+- HTML
+  - [ ] m.trust
+- Rendering
+  - [ ] m.render
+  - [ ] m.redraw
+    - [ ] m.redraw.strategy
+  - [ ] m.startComputation / m.endComputation
+- Testing
+  - [ ] m.deps
+- History
+  - [ ] Roadmap
+  - [ ] Change log
 
 ## Credits
 
-@tuoxiansp 提出并先行了翻译Mithril的工作。
+[@tuoxiansp](https://github.com/tuoxiansp) 提出并先行了翻译Mithril的工作。
