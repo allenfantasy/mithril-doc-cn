@@ -10,8 +10,8 @@
 ### Guide
 - [ ] Installation [@allenfantasy](https://github.com/allenfantasy)
 - [ ] Getting Started [@tuoxiansp](https://github.com/tuoxiansp)
-- [ ] Routing
-- [ ] Web Services @tuoxiansp
+- [ ] Routing [@allenfantasy](https://github.com/allenfantasy)
+- [ ] Web Services [@tuoxiansp](https://github.com/tuoxiansp)
 - [ ] Components
 - [ ] Auto-redrawing System
 - [ ] Integrating with other libraries
