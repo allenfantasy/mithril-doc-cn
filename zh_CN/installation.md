@@ -40,7 +40,7 @@ Content delivery networks allow the library to be cached across different websit
 
 你还可以在 [cdnjs](http://cdnjs.com/libraries/mithril/) 和 [jsDelivr](http://www.jsdelivr.com/#!mithril) 中找到 Mithril。
 
-内容分发网络允许代码库在不同的使用不同框架版本的网站中被缓存起来，通过在离用户地理位置较近的服务器上提供代码文件的方式，减少（网站的）延迟。
+不同网站会使用框架的同一个版本，内容分发网络使得代码库可以在这些网站中被缓存起来，通过在离用户地理位置较近的服务器上提供代码文件的方式，减少（网站的）延迟。
 
 #### cdnjs
 
@@ -175,6 +175,8 @@ In order to update a forked version of Mithril, [follow the instructions on this
 如果你希望使用最新的（开发）版本，你可以 [fork 开发项目](https://github.com/lhorie/mithril.js)。
 
 需要注意，尽管 Mithril 有集成环境下的测试，最新的（开发）版本可能偶尔会崩溃。如果你对帮忙改进 Mithril 感兴趣，欢迎你使用最新的（开发）版本，并反映你找到的 bug。
+
+[按照这个网页上的指示](https://help.github.com/articles/syncing-a-fork)，你可以对 fork 后的 Mithril 版本进行更新。
 
 #### Using bleeding edge from NPM
 #### 在 NPM 上使用最新的开发版本
