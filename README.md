@@ -8,7 +8,7 @@
 ## TODO
 
 ### Guide
-- [ ] Installation [@allenfantasy](https://github.com/allenfantasy)
+- [x] Installation [@allenfantasy](https://github.com/allenfantasy)
 - [ ] Getting Started [@tuoxiansp](https://github.com/tuoxiansp)
 - [ ] Routing [@allenfantasy](https://github.com/allenfantasy)
 - [ ] Web Services [@tuoxiansp](https://github.com/tuoxiansp)
