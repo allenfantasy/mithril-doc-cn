@@ -15,6 +15,12 @@ Mithril provides utilities to handle three different aspect of routing:
 
 它可以无缝地在页面内导航，同时保留了对每个页面单独作为书签的能力，以及通过浏览器的历史机制在应用内导航的能力。（原文：It enables seamless navigability while preserving the ability to bookmark each page individually, and the ability to navigate the application via the browser's history mechanism）
 
+Mithril 提供了处理三种路由情况的工具：
+
+- 定义一组路由
+- 通过代码在路由间进行跳转
+- 让模板中的链接透明且不显眼地对应某个路由（原文：making links in templates routed transparently and unobstrusively）
+
 ---
 
 ### Defining routes
@@ -40,12 +46,13 @@ Routes can take arguments, by prefixing words with a colon `:`.
 
 The example below shows a route that takes a `userID` parameter.
 
-路由可以接受参数，通过在单词前面添加一个冒号`:`。
+通过在单词前面添加一个冒号`:`，路由可以接受参数。
 
 下面的例子展示了一个接受`userID`参数的路由。
 
 ```javascript
 //a sample module
+//一个模块例子
 var dashboard = {
 	controller: function() {
 		this.id = m.route.param("userID");
@@ -56,9 +63,11 @@ var dashboard = {
 }
 
 //setup routes to start w/ the `#` symbol
+//设置路由在开头带/不带 `#` 符号
 m.route.mode = "hash";
 
 //define a route
+//定义一个路由
 m.route(document.body, "/dashboard/johndoe", {
 	"/dashboard/:userID": dashboard
 });
@@ -106,7 +115,7 @@ The `m.route.mode` property defines which URL portion is used to implement the r
 
     URL 例子：`http://server/?/path/to/page`
 
-- `hash` 模式使用 hash（译者注：井号 #）。这是唯一的，在所有浏览器上都不会在路由改变时刷新页面的模式。但是，这种模式不支持带名的锚节点，以及浏览器的历史列表。
+- `hash` 模式使用 hash（译者注：井号 #）。这是唯一的，在所有浏览器上都不会在路由改变时刷新页面的模式。但是，这种模式不支持带名字的锚节点，以及浏览器的历史列表。
 
     URL 例子：`http://server/#/path/to/page`
 
@@ -153,3 +162,5 @@ This makes the href behave correctly regardless of which `m.route.mode` is selec
 See [`m()`](mithril.md) for more information on virtual elements.
 
 这样不管 `m.route.mode` 的值是什么， href 属性都会是正确的。好的实践是：总是使用以上的用法，而不是在 href 属性中硬编码 `?` 或者 `#`。
+
+查看 [`m()`](mithril.md) 了解关于 virtual elements 的更多信息。
