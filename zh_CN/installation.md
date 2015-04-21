@@ -84,7 +84,7 @@ bower install mithril
 
 ### Component
 
-[Component](http://component.io) 又是另一个 [NodeJS](http://nodejs.org/) 的包管理器。如果你已经在使用 NodeJS 或者打算使用 [Grunt](http://gruntjs.com/) 来建立一个构建系统，你可以用 Bower 以便于保持 Mithril 版本的更新。（译者注：这段话是不是很熟？）
+[Component](http://component.io) 又是另一个 [NodeJS](http://nodejs.org/) 的包管理器。如果你已经在使用 NodeJS 或者打算使用 [Grunt](http://gruntjs.com/) 来建立一个构建系统，你可以用 Component 以便于保持 Mithril 版本的更新。
 
 假设你已经装好了 NodeJS，你可以用以下指令安装 Component：
 
