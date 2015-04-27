@@ -3,7 +3,9 @@
 
 ## 如何加入
 
-发issue认领 Guide / API 中的某个任务，注明填坑的deadline，方便协调。
+发 issue 认领 Guide / API 中的某个任务，注明填坑的 deadline，方便协调。
+
+**注意** 在写作时，请遵循 [中文文案排版指北](https://github.com/sparanoid/chinese-copywriting-guidelines)
 
 ## TODO
 
@@ -56,4 +58,4 @@
 
 ## Credits
 
-[@tuoxiansp](https://github.com/tuoxiansp) 提出并先行了翻译Mithril的工作。
+[@tuoxiansp](https://github.com/tuoxiansp) 提出并先行了翻译 Mithril 的工作。
