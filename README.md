@@ -12,10 +12,10 @@
 ### Guide
 - [x] Installation [@allenfantasy](https://github.com/allenfantasy)
 - [ ] Getting Started [@tuoxiansp](https://github.com/tuoxiansp)
-- [ ] Routing [@allenfantasy](https://github.com/allenfantasy)
+- [x] Routing [@allenfantasy](https://github.com/allenfantasy)
 - [ ] Web Services [@tuoxiansp](https://github.com/tuoxiansp)
-- [ ] Components
-- [ ] Auto-redrawing System
+- [x] Components [@allenfantasy](https://github.com/allenfantasy)
+- [ ] Auto-redrawing System [@allenfantasy](https://github.com/allenfantasy)
 - [ ] Integrating with other libraries
 - [ ] Compiling templates
 - [ ] Differences with Other MVC Frameworks
