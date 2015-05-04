@@ -15,7 +15,7 @@
 - [x] Routing [@allenfantasy](https://github.com/allenfantasy)
 - [ ] Web Services [@tuoxiansp](https://github.com/tuoxiansp)
 - [x] Components [@allenfantasy](https://github.com/allenfantasy)
-- [ ] Auto-redrawing System [@allenfantasy](https://github.com/allenfantasy)
+- [x] Auto-redrawing System [@allenfantasy](https://github.com/allenfantasy)
 - [ ] Integrating with other libraries
 - [ ] Compiling templates
 - [ ] Differences with Other MVC Frameworks
