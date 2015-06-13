@@ -1,50 +1,52 @@
-## Integrating with Other Libraries
+## 和其他库整合
 
-Integration with third party libraries or vanilla javascript code can be achieved via the [`config` attribute of virtual elements](mithril.md#accessing-the-real-dom).
+可以通过 [虚拟元素的 `config` 属性](mithril.md#accessing-the-real-dom) 和第三方的库或者纯 javascript 代码进行整合。
 
-It's recommended that you encapsulate integration code in a component or a helper function.
+推荐的做法是将整合的代码封装在一个组件或者一个 helper 函数中。
 
-The example below shows a simple component that integrates with the [select2 library](http://ivaynberg.github.io/select2/).
+下面的例子展示了一个和 [select2 库](http://ivaynberg.github.io/select2) 整合的组件。
 
 ```javascript
-//Select2 component (assumes both jQuery and Select2 are included in the page)
+//Select2 组件 （假设 jQuery 和 Select2 都包含在页面内）
 
 /** @namespace */
 var select2 = {};
 
 /**
-select2 config factory. The params in this doc refer to properties of the `ctrl` argument
-@param {Object} data - the data with which to populate the <option> list
-@param {number} value - the id of the item in `data` that we want to select
-@param {function(Object id)} onchange - the event handler to call when the selection changes.
-	`id` is the the same as `value`
+select2 配置的工厂函数。在这个文档内的参数指的是 `ctrl` 这个形参的属性
+@param {Object} data - 用来 populate <option> 列表的数据
+@param {Number} value - 我们在 `data` 中选择的条目的 id
+@param {function(Object id)} onchange - 当选择（输入）变化时调用的事件函数。
+	`id` 和 `value` 是一样的。
 */
 select2.config = function(ctrl) {
 	return function(element, isInitialized) {
 		var el = $(element);
-		
+
 		if (!isInitialized) {
-			//set up select2 (only if not initialized already)
+			//对 select2 进行初始化（如果它还没有被初始化）
 			el.select2()
-				//this event handler updates the controller when the view changes
+				//在 view 变化时，这个事件函数更新 controller
 				.on("change", function(e) {
-					//integrate with the auto-redrawing system...
+					//和自动重绘系统整合...
 					m.startComputation();
-					
-					//...so that Mithril autoredraws the view after calling the controller callback
-					if (typeof ctrl.onchange == "function") ctrl.onchange(el.select2("val"));
-					
+
+					//...这样 Mithril 会在调用 controller 的回调函数后自动重绘
+					if (typeof ctrl.onchange == "function") {
+						ctrl.onchange(el.select2("val"));
+					}
+
 					m.endComputation();
-					//end integration
+					//整合结束
 				});
 		}
-		
-		//update the view with the latest controller value
+
+		//用最新的 controller 的值更新 view
 		el.select2("val", ctrl.value);
 	}
 }
 
-//this view implements select2's `<select>` progressive enhancement mode
+//这个 view 实现了 select2 的 `<select>` 渐进的增量模式
 select2.view = function(ctrl) {
 	return m("select", {config: select2.config(ctrl)}, [
 		ctrl.data.map(function(item) {
@@ -53,20 +55,19 @@ select2.view = function(ctrl) {
 	]);
 };
 
-//end component
+//定义组件结束
 
 
-
-//usage
+//使用
 var dashboard = {};
 
 dashboard.controller = function() {
-	//list of users to show
+	//要展示的用户列表
 	this.data = [{id: 1, name: "John"}, {id: 2, name: "Mary"}, {id: 3, name: "Jane"}];
-	
-	//select Mary
+
+	//选择 Mary
 	this.currentUser = this.data[1];
-	
+
 	this.changeUser = function(id) {
 		console.log(id)
 	};
@@ -82,33 +83,33 @@ dashboard.view = function(ctrl) {
 m.module(document.body, dashboard);
 ```
 
-`select2.config` is a factory that creates a `config` function based on a given controller. We declare this outside of the `select2.view` function to avoid cluttering the template.
+`select2.config` 是一个工厂函数，基于一个给定的 controller 创建一个 `config` 函数。我们在 `select2.view` 函数外声明这个工厂函数，以避免使模板变得混乱。
 
-The `config` function created by our factory only runs the initialization code if it hasn't already. This `if` statement is important, because this function may be called multiple times by Mithril's auto-redrawing system and we don't want to re-initialize select2 at every redraw.
+用我们的工厂函数创建的 `config` 函数只在还没有执行初始化时才执行初始化的代码。这个 `if` 语句很重要，因为这个函数可能会因为 Mithril 的自动重绘系统而被多次调用，而我们并不想重新对 select2 在每次重绘时都进行初始化。
 
-The initialization code defines a `change` event handler. Because this handler is not created using Mithril's templating engine (i.e. we're not defining an attribute in a virtual element), we must manually integrate it to the auto-redrawing system.
+初始化的代码定义了一个 `change` 事件函数。因为这个函数不是用 Mithril 的模板引擎创建的（即：我们不在一个虚拟元素里定义属性），我们必须在自动重绘系统中手动的整合它。
 
-This can be done by simply calling `m.startComputation` at the beginning, and `m.endComputation` at the end of the function. You must add a pair of these calls for each asynchronous execution thread, unless the thread is already integrated.
+这可以通过简单的在开头调用 `m.startComputation`，在函数的最后调用 `m.endComputation` 来完成。你必须为每次异步的执行线程添加一对这样的函数调用，除非这个线程已经整合过了。
 
-For example, if you were to call a web service using `m.request`, you would not need to add more calls to `m.startComputation` / `m.endComputation` (you would still need the first pair in the event handler, though).
+例如，如果你要用 `m.request` 来调用一个 web 服务，你不需要添加额外的 `m.startComputation` / `m.endComputation` 调用（尽管，在事件函数中你还是需要第一对函数调用）。
 
-On the other hand, if you were to call a web service using jQuery, then you would be responsible for adding a `m.startComputation` call before the jQuery ajax call, and for adding a `m.endComputation` call at the end of the completion callback, in addition to the calls within the `change` event handler. Refer to the [`auto-redrawing`](auto-redrawing.md) guide for an example.
+另一方面，如果你要用 jQuery 来调用一个 web 服务，那你就要负责在调用 jQuery 的 ajax 前，添加一个对 `m.startComputation` 的调用，以及在（ajax 的）完成后的回调函数的最后添加一个对 `m.endComputation` 的调用，以及在 `change` 事件函数中添加一对调用。参考 [`auto-redrawing`](auto-redrawing.md) 指南中给出的例子。
 
-One important note about the `config` method is that you should avoid calling `m.redraw`, `m.startComputation` and `m.endComputation` in the `config` function's execution thread. (An execution thread is basically any amount of code that runs before other asynchronous threads start to run.)
+一个关于 `config` 方法的重要注意事项是：你要避免在 `config` 函数的执行线程中，调用 `m.redraw`，`m.startComputation` 和 `m.endComputation`（执行线程基本上是：任何在其他异步线程开始执行之前执行的代码）。
 
-While Mithril technically does support this use case, relying on multiple redraw passes degrades performance and makes it possible to code yourself into an infinite execution loop situation, which is extremely difficult to debug.
+尽管从技术上 Mithril 支持这样的用法，但依靠多次的重绘传递会降低性能，且使得你掉入无限循环的代码执行中，这是非常难 debug 的。
 
-The `dashboard` module in the example shows how a developer would consume the select2 component.
+例子中的 `dashboard` 模块展示了一个开发者如何使用 select2 组件。
 
-You should always document integration components so that others can find out what attribute parameters can be used to initialize the component.
+你总是应该对整合（第三方库）的组件加文档注释，这样其他（开发者）可以知道什么属性参数可以在初始化组件时使用。
 
 ---
 
-## Integrating to legacy code
+## 和旧代码整合
 
-If you need to add separate widgets to different places on a same page, you can simply initialize each widget as you would a regular Mithril application (i.e. use `m.render`, `m.module` or `m.route`).
+如果你需要在一个页面中的多个地方添加分散的组件，你可以简单的对每个组件进行初始化，像你写一个正常的 Mithril 应用一样（即：使用 `m.render`，`m.module` 和 `m.route`）。
 
-There's just one caveat: while simply initializing multiple "islands" in this fashion works, their initialization calls are not aware of each other and can cause redraws too frequently. To optimize rendering, you should add a `m.startComputation` call before the first widget initialization call, and a `m.endComputation` after the last widget initialization call in each execution thread.
+只有一个地方要注意：当对多个"岛"进行初始化时，它们的初始化调用是互相不知道对方的存在的，所以可能会造成过于频繁的重绘。为了对渲染进行优化，你应该在每个执行线程中的第一个组件初始化前，添加一个 `m.startComputation` 调用，以及在最后一个组件初始化后，添加一个 `m.endComputation` 调用。如下面的例子：
 
 ```javascript
 m.startComputation()
@@ -119,4 +120,3 @@ m.module(document.getElementById("widget2-container"), widget1)
 
 m.endComputation()
 ```
-
