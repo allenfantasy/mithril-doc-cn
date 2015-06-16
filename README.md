@@ -16,8 +16,8 @@
 - [ ] Web Services [@tuoxiansp](https://github.com/tuoxiansp)
 - [x] Components [@allenfantasy](https://github.com/allenfantasy)
 - [x] Auto-redrawing System [@allenfantasy](https://github.com/allenfantasy)
-- [ ] Integrating with other libraries
-- [ ] Compiling templates
+- [x] Integrating with other libraries
+- [x] Compiling templates
 - [ ] Differences with Other MVC Frameworks
 - [ ] Benchmarks
 - [ ] Good Pratices
